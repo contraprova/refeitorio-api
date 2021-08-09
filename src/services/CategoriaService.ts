@@ -25,18 +25,22 @@ class HandleDbCategorias{
         await categoriaRepositorio.save(categoria);
         return categoria; 
     }
-    async listaCategoria(){
+    async listaCategoria({nome}){
         const categoriaRepositorio = getCustomRepository(CategoriaRepositories);        
+        if(nome){
+            const categoria = await categoriaRepositorio.find({nome});
+            return categoria;
+        }
         const categoria = await categoriaRepositorio.find();
-        return categoria;
+        return categoria;        
     }
-    async atualizaCategoria({nomeCategoria, nome}){
-        if(!nome){
+    async atualizaCategoria({id, nome}){
+        if(!id){
             throw new Error("Informe a Categoria");
         }
 
         const categoriaRepositorio = getCustomRepository(CategoriaRepositories);
-        const categoria = await categoriaRepositorio.findOne({nome:nomeCategoria});
+        const categoria = await categoriaRepositorio.findOne({id:id});
 
         if(!categoria){
             throw new Error("Categoria Inexistente");
@@ -47,14 +51,14 @@ class HandleDbCategorias{
         return categoria;        
 
     }
-    async deletaCategoria({nome}){
-        if(!nome){
+    async deletaCategoria({id}){
+        if(!id){
             throw new Error("Informe a Categoria para exclusão");
         
         }        
         const categoriaRepositorio = getCustomRepository(CategoriaRepositories);
         const pratoRepositorio = getCustomRepository(PratoRepositories);
-        const categoria = await categoriaRepositorio.findOne({nome});        
+        const categoria = await categoriaRepositorio.findOne({id:id});        
         
         if(categoria){            
             const categoriaPratoExistente = await pratoRepositorio.findOne({categoria_id:categoria.id});            
@@ -62,8 +66,7 @@ class HandleDbCategorias{
                 throw new Error("Categoria possui pratos atribuidos");
             }
             await categoriaRepositorio.remove(categoria);            
-        }      
-        // const categoriaPratoExiste = categoriaRepositorio.find({join:{alias:"categoria", innerJoin: {id:}}})
+        }              
     }
 }
 

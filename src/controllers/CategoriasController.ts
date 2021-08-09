@@ -13,23 +13,23 @@ class HandleCategorias{
     }
 
     async listaCategoria(request:Request, response:Response){
-        // const {nome} = request.params;
+        const {nome} = request.params;
                 
-        const listaCategoria = await categorias.listaCategoria();
+        const listaCategoria = await categorias.listaCategoria({nome});
 
         return response.json(listaCategoria);
     }
 
     async atualizaCategoria(request:Request, response:Response){
-        const {nomeCategoria, nome} = request.body;
-        const atualizaCategoria = await categorias.atualizaCategoria({nomeCategoria, nome})
+        const {id, nome} = request.body;
+        const atualizaCategoria = await categorias.atualizaCategoria({id, nome})
         return response.json(atualizaCategoria);
     }
 
     async deletaCategoria(request:Request, response:Response){
-        const {nome} = request.params;
-        const deletaCategoria = await categorias.deletaCategoria({nome});
-        return response.json({"return":"Categoria Excluída: "+nome});
+        const {id} = request.params;
+        const deletaCategoria = await categorias.deletaCategoria({id});
+        return response.json({"return":"Categoria Excluída: "+id});
     }
 }
 

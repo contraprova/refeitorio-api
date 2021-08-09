@@ -17,19 +17,20 @@ const HandleCardapioPratoController = new HandleCardapioPrato();
 // router.post("/users", createUserController.handle)
 router.post("/prato", HandlePratosController.inserePrato)
 router.get("/listaprato/:nome?", HandlePratosController.listaPrato)
-router.get("/listatodosospratos/:nome?/:categoria_id?/:status?", HandlePratosController.listaTodosOsPratos)
+router.get("/listatodosospratos/:categoria_id?", HandlePratosController.listaTodosOsPratos)
 router.put("/atualizaprato", HandlePratosController.atualizaPrato)
 router.delete("/deletaprato/:nome?", HandlePratosController.deletaPrato)
 
 router.post("/categoria", HandleCategoriasController.insereCategoria);
 router.get("/categoria/:nome?", HandleCategoriasController.listaCategoria);
 router.put("/categoria", HandleCategoriasController.atualizaCategoria);
-router.delete("/deletacategoria/:nome?", HandleCategoriasController.deletaCategoria)
+router.delete("/deletacategoria/:id", HandleCategoriasController.deletaCategoria)
 
 router.post("/cardapios", HandleCardapiosController.insereCardapio);
 router.post("/cardapioprato", HandleCardapioPratoController.insereCardapioPrato);
 router.get("/cardapiodia", HandleCardapioPratoController.listaCardapioDia);
-router.delete("/deletapratocardapio", HandleCardapioPratoController.deletaPratoCardapio)
+router.delete("/deletacardapio/:id", HandleCardapiosController.deletaCardapio);
+router.put("/atualizacardapio/:id", HandleCardapiosController.atualizaCardapio);
 
 
 export {router};

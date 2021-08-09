@@ -1,5 +1,6 @@
-import {Entity,PrimaryGeneratedColumn,PrimaryColumn, Column,ManyToMany,JoinTable} from "typeorm";
+import {Entity,PrimaryGeneratedColumn,PrimaryColumn, Column,ManyToMany,JoinTable, OneToMany, ManyToOne, JoinColumn} from "typeorm";
 import { Cardapio } from "./Cardapio";
+import { Categoria } from "./Categoria";
 
 @Entity("pratos")
 class Prato {
@@ -17,6 +18,11 @@ class Prato {
 
     @ManyToMany(() => Cardapio, cardapio => cardapio.id)
     cardapios: Cardapio[];
+
+    @ManyToMany(()=>Categoria, categoria=>categoria.id)
+    categoria: Categoria[];
+
+
 }
 
 export {Prato}

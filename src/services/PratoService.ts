@@ -3,12 +3,11 @@ import {PratoRepositories} from "../repositories/PratosRepositories";
 
 interface TypesPrato{
     nome:string;
-    categoria_id:number;
-    status: boolean;
+    categoria_id:number;    
 }
 
 class HandleDbPratos{
-    async inserePrato({nome, categoria_id, status}:TypesPrato){
+    async inserePrato({nome, categoria_id}:TypesPrato, status){
         const pratoRepositorio = getCustomRepository(PratoRepositories);
         const pratoExistente = await pratoRepositorio.findOne({nome});
 
@@ -18,10 +17,6 @@ class HandleDbPratos{
 
         if(!categoria_id){
             throw new Error("Informe a Categoria");
-        }
-
-        if(!status){
-            throw new Error("Informe o Status");
         }
 
         if(pratoExistente){
@@ -49,28 +44,33 @@ class HandleDbPratos{
         }
         return prato;
     }
-    
-    async listaTodosOsPratos({nome,categoria_id,status}){
-        if(!nome && !categoria_id && !status){
-            throw new Error("Informe o Prato, Categoria ou Status");
+    // Trazer todos os pratos caso não venha parametro na URL, caso venha, pegar os pratos da categoria.
+    async listaTodosOsPratos({categoria_id}){
+        const pratoRepositorio = getCustomRepository(PratoRepositories);                
+        if(!categoria_id){
+            // throw new Error("Informe o Prato, Categoria ou Status");
+            const pratos = await pratoRepositorio.find();
+            return pratos;
         }
-
-        const pratoRepositorio = getCustomRepository(PratoRepositories);
-        const prato = await pratoRepositorio.find({nome: Like("%"+nome+"%")});
-        
-        if(!prato || prato.length == 0){
+        if(categoria_id){
+            const pratos = await pratoRepositorio.find({categoria_id:categoria_id});            
+            return pratos;
+        }        
+        // const prato = await pratoRepositorio.find({nome: Like("%"+nome+"%")});
+        const pratos = await pratoRepositorio.find({categoria_id:categoria_id});            
+        if(!pratos[0] || pratos.length == 0){
             throw new Error("Prato Inexistente");
         }
-        return prato;
+        // return prato;
     }
 
-    async atualizaPrato({nome, categoria_id, status, nomePrato}){
-        if(!nome && !categoria_id && !status){
+    async atualizaPrato({nome, categoria_id, status, id}){
+        if(!id && !categoria_id && !status){
             throw new Error("Informe o Prato, Categoria ou Status");
         }
 
         const pratoRepositorio = getCustomRepository(PratoRepositories);
-        const prato = await pratoRepositorio.findOne({nome:nomePrato});
+        const prato = await pratoRepositorio.findOne({id:id});
         
 
         if(!prato || typeof(prato) == "undefined"){
