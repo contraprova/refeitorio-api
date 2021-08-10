@@ -12,10 +12,18 @@ class HandleCategorias{
         
     }
 
-    async listaCategoria(request:Request, response:Response){
-        const {nome} = request.params;
+    async listaCategoriaPratos(request:Request, response:Response){
+        const {id} = request.params;
                 
-        const listaCategoria = await categorias.listaCategoria({nome});
+        const listaCategoria = await categorias.listaCategoriaPratos({id});
+
+        return response.json(listaCategoria);
+    }
+
+    async listaCategoria(request:Request, response:Response){        
+        const {id} = request.params;
+                
+        const listaCategoria = await categorias.listaCategoria({id});
 
         return response.json(listaCategoria);
     }

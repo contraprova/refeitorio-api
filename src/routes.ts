@@ -22,7 +22,8 @@ router.put("/atualizaprato", HandlePratosController.atualizaPrato)
 router.delete("/deletaprato/:nome?", HandlePratosController.deletaPrato)
 
 router.post("/categoria", HandleCategoriasController.insereCategoria);
-router.get("/categoria/:nome?", HandleCategoriasController.listaCategoria);
+router.get("/categoria/:id?", HandleCategoriasController.listaCategoria);
+router.get("/categoriapratos/:id?", HandleCategoriasController.listaCategoriaPratos);
 router.put("/categoria", HandleCategoriasController.atualizaCategoria);
 router.delete("/deletacategoria/:id", HandleCategoriasController.deletaCategoria)
 

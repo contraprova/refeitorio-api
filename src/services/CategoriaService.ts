@@ -25,14 +25,24 @@ class HandleDbCategorias{
         await categoriaRepositorio.save(categoria);
         return categoria; 
     }
-    async listaCategoria({nome}){
-        const categoriaRepositorio = getCustomRepository(CategoriaRepositories);        
-        if(nome){
-            const categoria = await categoriaRepositorio.find({nome});
+    async listaCategoriaPratos({id}){        
+        const pratoRepositorio = getCustomRepository(PratoRepositories);        
+        if(!id){
+            const categoria = await pratoRepositorio.find({relations:['categoria']}); 
             return categoria;
-        }
-        const categoria = await categoriaRepositorio.find();
+        }                
+        const categoria = await pratoRepositorio.createQueryBuilder("pratos")
+        .innerJoinAndSelect('pratos.categoria','categoria').where("categoria.id = :id",{id}).getMany();        
         return categoria;        
+    }
+    async listaCategoria({id}){
+        const categoriaRepositorio = getCustomRepository(CategoriaRepositories);
+        if(!id){
+            const categoria = await categoriaRepositorio.find();
+            return categoria;    
+        }
+        const categoria = await categoriaRepositorio.findOne({id});
+        return categoria;
     }
     async atualizaCategoria({id, nome}){
         if(!id){
