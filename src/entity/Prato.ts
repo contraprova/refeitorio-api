@@ -19,13 +19,9 @@ class Prato {
     @ManyToMany(() => Cardapio, cardapio => cardapio.pratos)
     cardapios: Cardapio[];
 
-    @JoinColumn({name:'categoria_id'})
+    @JoinColumn({name:'categoria_id'})    
     @ManyToOne(()=>Categoria, categoria=>categoria.prato)
-    categoria: Categoria;
-
-    // @ManyToMany(()=>Categoria, categoria=>categoria.prato)
-    // categoria: Categoria[];
-
+    categoria: Categoria[];
 
 }
 

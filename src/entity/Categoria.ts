@@ -9,28 +9,8 @@ class Categoria {
     @Column()
     nome:string;
 
-    // Uma categoria tem vários pratos = OnetoMany
     @OneToMany(()=>Prato, prato=>prato.categoria)
-    prato: Prato[]
-    // @JoinColumn({name:'categoria_id', referencedColumnName:'id'})
-    // prato: Prato[];
-
-    // @ManyToMany(()=> Prato, prato=>prato.categoria)
-    // prato: Prato[];
-
-    // @ManyToMany(() => Prato, prato => prato.cardapios)
-    // @JoinTable({
-    //     name: "cardapio",
-    //     joinColumn: {
-    //         name: "id",
-    //         referencedColumnName: "id"
-    //         },
-    //     inverseJoinColumn: {
-    //         name: "prato_id",
-    //         referencedColumnName: "id"
-    //         }
-    //     })
-    // prato: Prato[];
+    prato: Prato  
 }
 
 export {Categoria}

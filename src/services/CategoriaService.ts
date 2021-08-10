@@ -26,13 +26,16 @@ class HandleDbCategorias{
         return categoria; 
     }
     async listaCategoriaPratos({id}){        
-        const pratoRepositorio = getCustomRepository(PratoRepositories);        
+        // const pratoRepositorio = getCustomRepository(PratoRepositories);        
+        const categoriaRepositorio = getCustomRepository(CategoriaRepositories);
         if(!id){
-            const categoria = await pratoRepositorio.find({relations:['categoria']}); 
+            const categoria = await categoriaRepositorio.find({relations:['prato']}); 
             return categoria;
-        }                
-        const categoria = await pratoRepositorio.createQueryBuilder("pratos")
-        .innerJoinAndSelect('pratos.categoria','categoria').where("categoria.id = :id",{id}).getMany();        
+        }  
+        const categoria = await categoriaRepositorio.createQueryBuilder("categorias")
+        .innerJoinAndSelect('categorias.prato','prato').where("prato.categoria_id = :id",{id}).getMany();              
+        // const categoria = await pratoRepositorio.createQueryBuilder("pratos")
+        // .innerJoinAndSelect('pratos.categoria','categoria').where("categoria.id = :id",{id}).getMany();        
         return categoria;        
     }
     async listaCategoria({id}){
