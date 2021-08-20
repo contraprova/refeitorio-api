@@ -9,8 +9,7 @@ const moment = require('moment-timezone');
 const dataAtual = moment().tz('America/Sao_Paulo').format('YYYY/MM/DD ')+"00:00:00";
 
 class HandleDbCardapioPrato{
-    async insereCardapioPrato({pratos}){        
-        
+    async insereCardapioPrato({pratos}){                
         const cardapioRepositorio = getCustomRepository(CardapioRepositories);
         const cardapioPratoRepositorio = getCustomRepository(CardapioPratoRepositories);
         
@@ -42,8 +41,7 @@ class HandleDbCardapioPrato{
                 await cardapioPratoRepositorio.save(cardapioPrato)            
                 return cardapioPrato;
             }))                            
-            return {"Mensagem":"Cardapio Criado - Condicional 2 "+cardapioCriado[0].id};
-          
+            return {"Mensagem":"Cardapio Criado - Condicional 2 "+cardapioCriado[0].id};          
         }        
     }  
 
