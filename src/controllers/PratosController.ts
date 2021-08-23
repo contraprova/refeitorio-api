@@ -36,11 +36,11 @@ class HandlePratos{
     }
 
     async deletaPrato(request:Request, response:Response){
-        const {nome} = request.params;
+        const {id} = request.params;
         
-        const deletaPrato = await pratos.deletaPrato({nome});
-
-        return response.json({"return":"Prato Excluído: "+nome});
+        const deletaPrato = await pratos.deletaPrato({id});
+        
+        return response.json({"return":"ID Prato Excluído: "+id});
     }
 }
 

@@ -72,7 +72,6 @@ class HandleDbPratos{
         const pratoRepositorio = getCustomRepository(PratoRepositories);
         const prato = await pratoRepositorio.findOne({id:id});
         
-
         if(!prato || typeof(prato) == "undefined"){
             throw new Error("Prato Inexistente");
         }
@@ -85,10 +84,9 @@ class HandleDbPratos{
             nome = prato.nome;
         }
 
-        if(!status){
-            status = prato.status;
-        }
-
+        if(typeof(status) == "undefined"){
+            status = prato.status;         
+        }       
         prato.nome = nome;
         prato.categoria_id = categoria_id;
         prato.status = status;
@@ -99,14 +97,14 @@ class HandleDbPratos{
 
     }
 
-    async deletaPrato({nome}){
-        if(!nome){
+    async deletaPrato({id}){
+        if(!id){
             throw new Error("Informe o Prato para exclusão");
         }
 
         const pratoRepositorio = getCustomRepository(PratoRepositories);
-        if(nome){
-            const prato = await pratoRepositorio.findOne({nome:nome});
+        if(id){
+            const prato = await pratoRepositorio.findOne({id:id});
             await pratoRepositorio.remove(prato);            
         }
     }

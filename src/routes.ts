@@ -19,7 +19,7 @@ router.post("/prato", HandlePratosController.inserePrato)
 router.get("/listaprato/:nome?", HandlePratosController.listaPrato)
 router.get("/listatodosospratos/:categoria_id?", HandlePratosController.listaTodosOsPratos)
 router.put("/atualizaprato", HandlePratosController.atualizaPrato)
-router.delete("/deletaprato/:nome?", HandlePratosController.deletaPrato)
+router.delete("/deletaprato/:id?", HandlePratosController.deletaPrato)
 
 router.post("/categoria", HandleCategoriasController.insereCategoria);
 router.get("/categoria/:id?", HandleCategoriasController.listaCategoria);
