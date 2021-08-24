@@ -31,6 +31,7 @@ router.post("/cardapios", HandleCardapiosController.insereCardapio);
 router.post("/cardapioprato", HandleCardapioPratoController.insereCardapioPrato);
 router.get("/cardapiodia", HandleCardapioPratoController.listaCardapioDia);
 router.delete("/deletacardapio/:id", HandleCardapiosController.deletaCardapio);
+router.delete("/deletapratocardapio", HandleCardapioPratoController.deletaPratoCardapio);
 router.put("/atualizacardapio/:id", HandleCardapiosController.atualizaCardapio);
 
 

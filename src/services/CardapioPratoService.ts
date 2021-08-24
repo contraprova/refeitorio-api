@@ -51,8 +51,10 @@ class HandleDbCardapioPrato{
         }
         console.log(pratos+" "+cardapio_id);
         const cardapioPratoRepositorio = getCustomRepository(CardapioPratoRepositories);
-        const deletaPratoCardapio = cardapioPratoRepositorio.delete({prato_id:pratos, cardapio_id:cardapio_id})
         
+        for(let i=0; i<pratos.length; i++){
+            const deletaPratoCardapio = cardapioPratoRepositorio.delete({prato_id:pratos[i], cardapio_id:cardapio_id})
+        }           
     } 
 
     async listaCardapioDia(){        
