@@ -11,8 +11,8 @@ class HandleCardapioPrato{
     
     // TROCAR O MÉTODO PARA ATUALIZA STATUS PRATO CARDAPIO
     async deletaPratoCardapio(request:Request, response:Response){
-        const {pratos, cardapio_id} = request.body;        
-        const deletaPratoCardapio = await cardapioPrato.deletaPratoCardapio({pratos,cardapio_id});
+        const {cardapio_id} = request.params;        
+        const deletaPratoCardapio = await cardapioPrato.deletaPratoCardapio({cardapio_id});
         return response.json("Prato Deletado");
     }
 

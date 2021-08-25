@@ -1,4 +1,5 @@
-import { getCustomRepository, Like } from "typeorm";
+import { getCustomRepository, Like, SimpleConsoleLogger } from "typeorm";
+import { Prato } from "../entity/Prato";
 import {PratoRepositories} from "../repositories/PratosRepositories";
 
 interface TypesPrato{
@@ -100,12 +101,11 @@ class HandleDbPratos{
     async deletaPrato({id}){
         if(!id){
             throw new Error("Informe o Prato para exclusão");
-        }
-
+        }        
         const pratoRepositorio = getCustomRepository(PratoRepositories);
-        if(id){
-            const prato = await pratoRepositorio.findOne({id:id});
-            await pratoRepositorio.remove(prato);            
+        if(id){              
+            const deletaPrato = await pratoRepositorio.createQueryBuilder("Prato").delete().from(Prato)
+            .where("id = :id",{id:id}).execute();          
         }
     }
 

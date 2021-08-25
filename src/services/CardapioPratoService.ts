@@ -1,4 +1,6 @@
+import { response } from "express";
 import {getCustomRepository, MoreThanOrEqual} from "typeorm";
+import { CardapioPrato } from "../entity/CardapioPrato";
 
 import {CardapioPratoRepositories} from "../repositories/CardapioPratoRepositories";
 import {CardapioRepositories} from "../repositories/CardapioRepositories";
@@ -45,22 +47,18 @@ class HandleDbCardapioPrato{
         }        
     }  
 
-    async deletaPratoCardapio({pratos, cardapio_id}){
-        if(!pratos && !cardapio_id){
-            throw new Error("Informe o prato para exclusão no cardápio");
-        }
-        console.log(pratos+" "+cardapio_id);
-        const cardapioPratoRepositorio = getCustomRepository(CardapioPratoRepositories);
-        
-        for(let i=0; i<pratos.length; i++){
-            const deletaPratoCardapio = cardapioPratoRepositorio.delete({prato_id:pratos[i], cardapio_id:cardapio_id})
-        }           
+    async deletaPratoCardapio({cardapio_id}){
+        if(!cardapio_id){
+            throw new Error("Informe o cardápio");
+        }        
+        const cardapioPratoRepositorio = getCustomRepository(CardapioPratoRepositories);         
+        const deletaPratoCardapio = await cardapioPratoRepositorio.createQueryBuilder("cardapioPrato").delete().from(CardapioPrato)
+        .where("cardapio_id = :cardapio_id",{cardapio_id:cardapio_id}).execute();
     } 
 
     async listaCardapioDia(){        
         const cardapioRepositorio = getCustomRepository(CardapioRepositories);        
-        const cardapio = await cardapioRepositorio.findOne({ relations: ["pratos"],where:{data: MoreThanOrEqual(dataAtual)}});
-        console.log(cardapio);
+        const cardapio = await cardapioRepositorio.findOne({ relations: ["pratos"],where:{data: MoreThanOrEqual(dataAtual)}});        
         return cardapio;        
     }
 }
