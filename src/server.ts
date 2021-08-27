@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import express, { Router,Request, Response, NextFunction} from 'express';
+import express, { Router, Request, Response, NextFunction } from 'express';
 import "express-async-errors";
 
 
@@ -14,17 +14,17 @@ app.use(cors('*'));
 app.use(express.json());
 app.use(router);
 
-app.use((err:Error, request:Request, response:Response, next:NextFunction)=>{
-    if(err instanceof Error){
+app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
+    if (err instanceof Error) {
         return response.status(400).json({
-            error:err.message
+            error: err.message
         })
     }
     return response.status(500).json({
-        status:"error",
-        message:"Internal Server Error"
+        status: "error",
+        message: "Internal Server Error"
     })
 })
 // console.log(process.env.USERNAME);
 
-app.listen(3000,()=>console.log("Servidor Rodando"))
+app.listen(process.env.PORT || 3000, () => console.log("Servidor Rodando"))
