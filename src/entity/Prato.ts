@@ -17,7 +17,7 @@ class Prato {
     status:boolean;
 
     @ManyToMany(() => Cardapio, cardapio => cardapio.pratos)
-    cardapios: Cardapio[];
+    cardapios: Cardapio;
 
     @JoinColumn({name:'categoria_id'})    
     @ManyToOne(()=>Categoria, categoria=>categoria.prato)

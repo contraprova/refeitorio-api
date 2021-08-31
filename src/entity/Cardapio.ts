@@ -12,7 +12,7 @@ class Cardapio {
     @Column()
     updated_at:Date;    
 
-    @ManyToMany(() => Prato, prato => prato.id)
+    @ManyToMany(() => Prato, prato => prato.cardapios)
     @JoinTable({
         name: "cardapioPrato",
         joinColumn: {
@@ -24,7 +24,7 @@ class Cardapio {
             referencedColumnName: "id"
             }
         })
-    pratos: Prato[];
+    pratos: Prato;
       
 }
 

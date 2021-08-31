@@ -10,7 +10,7 @@ class Categoria {
     nome:string;
 
     @OneToMany(()=>Prato, prato=>prato.categoria)
-    prato: Prato  
+    prato: Prato;  
 }
 
 export {Categoria}

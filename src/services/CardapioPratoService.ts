@@ -1,5 +1,6 @@
 import { response } from "express";
 import {getCustomRepository, MoreThanOrEqual} from "typeorm";
+import { Cardapio } from "../entity/Cardapio";
 import { CardapioPrato } from "../entity/CardapioPrato";
 
 import {CardapioPratoRepositories} from "../repositories/CardapioPratoRepositories";
@@ -8,7 +9,7 @@ import {CardapioRepositories} from "../repositories/CardapioRepositories";
 import {HandleDbCardapios} from "../services/CardapioService";
 
 const moment = require('moment-timezone');
-const dataAtual = moment().tz('America/Sao_Paulo').format('YYYY/MM/DD ')+"00:00:00";
+const dataAtual = moment().tz('America/Sao_Paulo').format('YYYY-MM-DD');
 
 class HandleDbCardapioPrato{
     async insereCardapioPrato({pratos}){                
@@ -58,7 +59,13 @@ class HandleDbCardapioPrato{
 
     async listaCardapioDia(){        
         const cardapioRepositorio = getCustomRepository(CardapioRepositories);        
-        const cardapio = await cardapioRepositorio.findOne({ relations: ["pratos"],where:{data: MoreThanOrEqual(dataAtual)}});        
+        const cardapio = await cardapioRepositorio.createQueryBuilder('cardapio')
+        .innerJoinAndSelect('cardapio.pratos','pratos')
+        .innerJoinAndSelect('pratos.categoria','categoria')
+        .where('cardapio.data >= :data', {data: dataAtual})        
+        .orderBy('categoria.nome', 'ASC') 
+        .getOne();        
+        // const cardapio = await cardapioRepositorio.findOne({ relations: ["pratos"],where:{data: MoreThanOrEqual(dataAtual)}});        
         return cardapio;        
     }
 }
