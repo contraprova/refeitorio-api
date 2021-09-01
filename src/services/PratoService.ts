@@ -49,19 +49,20 @@ class HandleDbPratos{
     async listaTodosOsPratos({categoria_id}){
         const pratoRepositorio = getCustomRepository(PratoRepositories);                
         if(!categoria_id){
-            // throw new Error("Informe o Prato, Categoria ou Status");
-            const pratos = await pratoRepositorio.find();
-            return pratos;
+            const prato = await pratoRepositorio.createQueryBuilder('pratos')
+            .orderBy("pratos.nome","ASC").getMany();            
+            return prato;
         }
         if(categoria_id){
-            const pratos = await pratoRepositorio.find({categoria_id:categoria_id});            
-            return pratos;
-        }        
-        // const prato = await pratoRepositorio.find({nome: Like("%"+nome+"%")});
-        const pratos = await pratoRepositorio.find({categoria_id:categoria_id});            
-        if(!pratos[0] || pratos.length == 0){
-            throw new Error("Prato Inexistente");
-        }
+            const prato = await pratoRepositorio.createQueryBuilder('pratos')
+            .where('pratos.categoria_id = :id', {id: categoria_id})          
+            .orderBy("pratos.nome","ASC").getMany();            
+            return prato;
+        }                
+        // const pratos = await pratoRepositorio.find({categoria_id:categoria_id});            
+        // if(!pratos[0] || pratos.length == 0){
+        //     throw new Error("Prato Inexistente");
+        // }
         // return prato;
     }
 

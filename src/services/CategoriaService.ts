@@ -27,15 +27,21 @@ class HandleDbCategorias{
     }
     async listaCategoriaPratos({id}){                
         const categoriaRepositorio = getCustomRepository(CategoriaRepositories);
-        if(!id){
-            const categoria = await categoriaRepositorio.find({relations:['prato']}); 
-            return categoria;
-        }  
+        if(!id){            
+            const categoria = await categoriaRepositorio.createQueryBuilder('categorias')
+            .innerJoinAndSelect('categorias.prato','pratos')
+            .orderBy('categorias.nome','ASC')    
+            .addOrderBy('pratos.nome','ASC')                        
+            .getMany();
+            return categoria;                 
+        }    
+        
         const categoria = await categoriaRepositorio.createQueryBuilder('categorias')
-        .innerJoinAndSelect('categorias.prato','pratos')        
-        .getMany();
-
-        return categoria;     
+            .innerJoinAndSelect('categorias.prato','pratos')
+            .where('categorias.id = :id', {id: id})          
+            .orderBy('pratos.nome','ASC')        
+            .getMany();
+            return categoria;                 
     }
     async listaCategoria({id}){
         const categoriaRepositorio = getCustomRepository(CategoriaRepositories);

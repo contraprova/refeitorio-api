@@ -63,7 +63,7 @@ class HandleDbCardapioPrato{
         const cardapio = await categoriaRepositorio.createQueryBuilder('categoria')
         .innerJoinAndSelect('categoria.prato','prato')
         .innerJoinAndSelect('prato.cardapios','cardapio')                
-        .where('cardapio.data >= :data', {data: dataAtual})        
+        .where('cardapio.data >= :data', {data: dataAtual})          
         .orderBy('categoria.nome', 'ASC') 
         .getMany();               
         return cardapio;        
