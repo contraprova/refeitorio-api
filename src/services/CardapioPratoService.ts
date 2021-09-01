@@ -5,6 +5,7 @@ import { CardapioPrato } from "../entity/CardapioPrato";
 
 import {CardapioPratoRepositories} from "../repositories/CardapioPratoRepositories";
 import {CardapioRepositories} from "../repositories/CardapioRepositories";
+import { CategoriaRepositories } from "../repositories/CategoriasRepositories";
 
 import {HandleDbCardapios} from "../services/CardapioService";
 
@@ -58,14 +59,13 @@ class HandleDbCardapioPrato{
     } 
 
     async listaCardapioDia(){        
-        const cardapioRepositorio = getCustomRepository(CardapioRepositories);        
-        const cardapio = await cardapioRepositorio.createQueryBuilder('cardapio')
-        .innerJoinAndSelect('cardapio.pratos','pratos')
-        .innerJoinAndSelect('pratos.categoria','categoria')
+        const categoriaRepositorio = getCustomRepository(CategoriaRepositories);                
+        const cardapio = await categoriaRepositorio.createQueryBuilder('categoria')
+        .innerJoinAndSelect('categoria.prato','prato')
+        .innerJoinAndSelect('prato.cardapios','cardapio')                
         .where('cardapio.data >= :data', {data: dataAtual})        
         .orderBy('categoria.nome', 'ASC') 
-        .getOne();        
-        // const cardapio = await cardapioRepositorio.findOne({ relations: ["pratos"],where:{data: MoreThanOrEqual(dataAtual)}});        
+        .getMany();               
         return cardapio;        
     }
 }
