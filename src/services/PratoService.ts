@@ -50,13 +50,16 @@ class HandleDbPratos{
         const pratoRepositorio = getCustomRepository(PratoRepositories);                
         if(!categoria_id){
             const prato = await pratoRepositorio.createQueryBuilder('pratos')
-            .orderBy("pratos.nome","ASC").getMany();            
+            .orderBy("pratos.nome","ASC")
+            .addOrderBy("pratos.categoria_id",'ASC')
+            .getMany();            
             return prato;
         }
         if(categoria_id){
             const prato = await pratoRepositorio.createQueryBuilder('pratos')
             .where('pratos.categoria_id = :id', {id: categoria_id})          
-            .orderBy("pratos.nome","ASC").getMany();            
+            .orderBy("pratos.nome","ASC")            
+            .getMany();            
             return prato;
         }                
         // const pratos = await pratoRepositorio.find({categoria_id:categoria_id});            
