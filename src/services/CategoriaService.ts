@@ -46,10 +46,17 @@ class HandleDbCategorias{
     async listaCategoria({id}){
         const categoriaRepositorio = getCustomRepository(CategoriaRepositories);
         if(!id){
-            const categoria = await categoriaRepositorio.find();
+            // const categoria = await categoriaRepositorio.find();
+            const categoria = await categoriaRepositorio.createQueryBuilder('categoria')
+            .orderBy('categoria.nome','ASC')
+            .getMany();
             return categoria;    
         }
-        const categoria = await categoriaRepositorio.findOne({id});
+        // const categoria = await categoriaRepositorio.findOne({id});
+        const categoria = await categoriaRepositorio.createQueryBuilder('categoria')
+        .where('categoria.id = :id',{id:id})
+        .orderBy('categoria.nome','ASC')
+        .getMany();        
         return categoria;
     }
     async atualizaCategoria({id, nome}){
