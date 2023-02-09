@@ -64,6 +64,7 @@ var HandlePratos = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        console.log(request.params);
                         nome = request.params.nome;
                         return [4 /*yield*/, pratos.listaPrato({ nome: nome })];
                     case 1:

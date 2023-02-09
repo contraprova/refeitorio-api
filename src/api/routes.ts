@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { CreateUserController } from "./controllers/CreateUserController";
-import { HandlePratos } from "./controllers/PratosController";
-import { HandleCategorias } from "./controllers/CategoriasController";
-import { HandleCardapios } from "./controllers/CardapiosController";
-import { HandleCardapioPrato } from "./controllers/CardapioPratoController";
+import { CreateUserController } from "../controllers/CreateUserController";
+import { HandlePratos } from "../controllers/PratosController";
+import { HandleCategorias } from "../controllers/CategoriasController";
+import { HandleCardapios } from "../controllers/CardapiosController";
+import { HandleCardapioPrato } from "../controllers/CardapioPratoController";
 
 const router = Router();
 
 // const createUserController = new CreateUserController();
 const HandlePratosController = new HandlePratos();
-const HandleCategoriasController = new HandleCategorias();
+const HandleCategoriesController = new HandleCategorias();
 const HandleCardapiosController = new HandleCardapios();
 const HandleCardapioPratoController = new HandleCardapioPrato();
 
@@ -21,11 +21,11 @@ router.get("/listatodosospratos/:categoria_id?", HandlePratosController.listaTod
 router.put("/atualizaprato", HandlePratosController.atualizaPrato)
 router.delete("/deletaprato/:id?", HandlePratosController.deletaPrato)
 
-router.post("/categoria", HandleCategoriasController.insereCategoria);
-router.get("/categoria/:id?", HandleCategoriasController.listaCategoria);
-router.get("/categoriapratos/:id?", HandleCategoriasController.listaCategoriaPratos);
-router.put("/categoria", HandleCategoriasController.atualizaCategoria);
-router.delete("/deletacategoria/:id", HandleCategoriasController.deletaCategoria)
+router.post("/categoria", HandleCategoriesController.insereCategoria);
+router.get("/categoria/:id?", HandleCategoriesController.listaCategoria);
+router.get("/categoriapratos/:id?", HandleCategoriesController.listaCategoriaPratos);
+router.put("/categoria", HandleCategoriesController.atualizaCategoria);
+router.delete("/deletacategoria/:id", HandleCategoriesController.deletaCategoria)
 
 router.post("/cardapios", HandleCardapiosController.insereCardapio);
 router.post("/cardapioprato", HandleCardapioPratoController.insereCardapioPrato);

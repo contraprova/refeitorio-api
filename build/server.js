@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 var express_1 = __importDefault(require("express"));
 require("express-async-errors");
-var routes_1 = require("./routes");
+var routes_1 = require("./api/routes");
 require("./database");
 var app = express_1.default();
 var cors = require('cors');
