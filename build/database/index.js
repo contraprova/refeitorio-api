@@ -8,3 +8,4 @@ if (typeorm_1.createConnection()) {
 else {
     console.log("Conexao com problemas.");
 }
+//# sourceMappingURL=index.js.map

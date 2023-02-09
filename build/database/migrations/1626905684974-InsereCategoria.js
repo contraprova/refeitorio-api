@@ -84,3 +84,4 @@ var InsereCategoria1626905684974 = /** @class */ (function () {
     return InsereCategoria1626905684974;
 }());
 exports.InsereCategoria1626905684974 = InsereCategoria1626905684974;
+//# sourceMappingURL=1626905684974-InsereCategoria.js.map

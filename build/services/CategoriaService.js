@@ -184,3 +184,4 @@ var HandleDbCategorias = /** @class */ (function () {
     return HandleDbCategorias;
 }());
 exports.HandleDbCategorias = HandleDbCategorias;
+//# sourceMappingURL=CategoriaService.js.map

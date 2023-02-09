@@ -191,3 +191,4 @@ var HandleDbPratos = /** @class */ (function () {
     return HandleDbPratos;
 }());
 exports.HandleDbPratos = HandleDbPratos;
+//# sourceMappingURL=PratoService.js.map

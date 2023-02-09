@@ -35,3 +35,4 @@ var PratoRepositories = /** @class */ (function (_super) {
     return PratoRepositories;
 }(typeorm_1.Repository));
 exports.PratoRepositories = PratoRepositories;
+//# sourceMappingURL=PratosRepositories.js.map

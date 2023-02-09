@@ -35,3 +35,4 @@ var CategoriaRepositories = /** @class */ (function (_super) {
     return CategoriaRepositories;
 }(typeorm_1.Repository));
 exports.CategoriaRepositories = CategoriaRepositories;
+//# sourceMappingURL=CategoriasRepositories.js.map

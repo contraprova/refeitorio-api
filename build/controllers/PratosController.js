@@ -121,3 +121,4 @@ var HandlePratos = /** @class */ (function () {
     return HandlePratos;
 }());
 exports.HandlePratos = HandlePratos;
+//# sourceMappingURL=PratosController.js.map

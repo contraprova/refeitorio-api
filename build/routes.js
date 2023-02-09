@@ -30,3 +30,4 @@ router.get("/cardapiodia", HandleCardapioPratoController.listaCardapioDia);
 router.delete("/deletacardapio/:id", HandleCardapiosController.deletaCardapio);
 router.delete("/deletapratocardapio/:cardapio_id", HandleCardapioPratoController.deletaPratoCardapio);
 router.put("/atualizacardapio/:id", HandleCardapiosController.atualizaCardapio);
+//# sourceMappingURL=routes.js.map

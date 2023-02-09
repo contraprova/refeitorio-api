@@ -35,3 +35,4 @@ var CardapioPratoRepositories = /** @class */ (function (_super) {
     return CardapioPratoRepositories;
 }(typeorm_1.Repository));
 exports.CardapioPratoRepositories = CardapioPratoRepositories;
+//# sourceMappingURL=CardapioPratoRepositories.js.map

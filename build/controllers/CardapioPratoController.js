@@ -89,3 +89,4 @@ var HandleCardapioPrato = /** @class */ (function () {
     return HandleCardapioPrato;
 }());
 exports.HandleCardapioPrato = HandleCardapioPrato;
+//# sourceMappingURL=CardapioPratoController.js.map

@@ -35,3 +35,4 @@ var UserRepositories = /** @class */ (function (_super) {
     return UserRepositories;
 }(typeorm_1.Repository));
 exports.UserRepositories = UserRepositories;
+//# sourceMappingURL=UsersRepositories.js.map

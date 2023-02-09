@@ -26,3 +26,4 @@ app.use(function (err, request, response, next) {
 });
 // console.log(process.env.USERNAME);
 app.listen(process.env.PORT || 3000, function () { return console.log("Servidor Rodando"); });
+//# sourceMappingURL=server.js.map

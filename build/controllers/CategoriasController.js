@@ -120,3 +120,4 @@ var HandleCategorias = /** @class */ (function () {
     return HandleCategorias;
 }());
 exports.HandleCategorias = HandleCategorias;
+//# sourceMappingURL=CategoriasController.js.map
