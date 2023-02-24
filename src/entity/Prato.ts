@@ -11,6 +11,15 @@ class Prato {
     nome:string;
 
     @Column()
+    lactose:number;
+
+    @Column()
+    vegano:number;
+
+    @Column()
+    gluten:number;
+
+    @Column()
     categoria_id:number;
 
     @Column()

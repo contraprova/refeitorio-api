@@ -2,9 +2,7 @@ import { createConnection } from "typeorm";
 
 createConnection();
 
-if(createConnection()){
-    console.log("Conexao feita");
-}else{
+if(!createConnection()){
     console.log("Conexao com problemas.");
 }
 

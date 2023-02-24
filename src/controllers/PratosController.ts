@@ -4,9 +4,9 @@ const pratos = new HandleDbPratos();
 
 class HandlePratos{
     async inserePrato(request:Request, response:Response){
-        const {nome, categoria_id} = request.body;
-        const status = true;                
-        const inserePrato = await pratos.inserePrato({nome, categoria_id}, status);
+        const {nome, lactose, vegano, gluten, categoria_id} = request.body;
+        const status = true;            
+        const inserePrato = await pratos.inserePrato({nome, lactose, vegano, gluten, categoria_id}, status);
         return response.json(inserePrato);
         
     }
@@ -29,9 +29,9 @@ class HandlePratos{
     }
 
     async atualizaPrato(request:Request, response:Response){
-        const {nome, categoria_id, status, id} = request.body;
+        const {nome, lactose, vegano, gluten, categoria_id, status, id} = request.body;
         
-        const atualizaPrato = await pratos.atualizaPrato({nome, categoria_id, status, id});
+        const atualizaPrato = await pratos.atualizaPrato({nome, lactose, vegano, gluten, categoria_id, status, id});
 
         return response.json(atualizaPrato);
     }

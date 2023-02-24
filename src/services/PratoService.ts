@@ -4,11 +4,14 @@ import {PratoRepositories} from "../repositories/PratosRepositories";
 
 interface TypesPrato{
     nome:string;
+    lactose:number;
+    vegano:number;
+    gluten:number;    
     categoria_id:number;    
 }
 
 class HandleDbPratos{
-    async inserePrato({nome, categoria_id}:TypesPrato, status){
+    async inserePrato({nome, lactose, vegano, gluten, categoria_id}:TypesPrato, status){
         const pratoRepositorio = getCustomRepository(PratoRepositories);
         const pratoExistente = await pratoRepositorio.findOne({nome});
 
@@ -23,9 +26,10 @@ class HandleDbPratos{
         if(pratoExistente){
             throw new Error("Prato já cadastrado");
         }
-
+        
+        console.log(gluten)
         const prato = pratoRepositorio.create({
-            nome, categoria_id, status
+            nome, lactose, vegano, gluten, categoria_id, status
         })
 
         await pratoRepositorio.save(prato);
@@ -69,7 +73,7 @@ class HandleDbPratos{
         // return prato;
     }
 
-    async atualizaPrato({nome, categoria_id, status, id}){
+    async atualizaPrato({nome, lactose, vegano, gluten, categoria_id, status, id}){
         if(!id && !categoria_id && !status){
             throw new Error("Informe o Prato, Categoria ou Status");
         }
@@ -89,10 +93,25 @@ class HandleDbPratos{
             nome = prato.nome;
         }
 
+        if(!lactose){
+            lactose = prato.lactose;
+        }
+
+        if(!vegano){
+            vegano = prato.vegano;
+        }
+
+        if(!gluten){
+            gluten = prato.gluten;
+        }
+
         if(typeof(status) == "undefined"){
             status = prato.status;         
         }       
         prato.nome = nome;
+        prato.lactose = lactose;
+        prato.vegano = vegano;
+        prato.gluten = gluten;
         prato.categoria_id = categoria_id;
         prato.status = status;
 
