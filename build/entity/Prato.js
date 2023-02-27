@@ -27,6 +27,18 @@ var Prato = /** @class */ (function () {
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", Number)
+    ], Prato.prototype, "lactose", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Number)
+    ], Prato.prototype, "vegano", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Number)
+    ], Prato.prototype, "gluten", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Number)
     ], Prato.prototype, "categoria_id", void 0);
     __decorate([
         typeorm_1.Column(),

@@ -44,7 +44,7 @@ var HandleDbPratos = /** @class */ (function () {
     function HandleDbPratos() {
     }
     HandleDbPratos.prototype.inserePrato = function (_a, status) {
-        var nome = _a.nome, categoria_id = _a.categoria_id;
+        var nome = _a.nome, lactose = _a.lactose, vegano = _a.vegano, gluten = _a.gluten, categoria_id = _a.categoria_id;
         return __awaiter(this, void 0, void 0, function () {
             var pratoRepositorio, pratoExistente, prato;
             return __generator(this, function (_b) {
@@ -63,8 +63,12 @@ var HandleDbPratos = /** @class */ (function () {
                         if (pratoExistente) {
                             throw new Error("Prato já cadastrado");
                         }
+                        console.log(gluten);
                         prato = pratoRepositorio.create({
                             nome: nome,
+                            lactose: lactose,
+                            vegano: vegano,
+                            gluten: gluten,
                             categoria_id: categoria_id,
                             status: status
                         });
@@ -130,7 +134,7 @@ var HandleDbPratos = /** @class */ (function () {
         });
     };
     HandleDbPratos.prototype.atualizaPrato = function (_a) {
-        var nome = _a.nome, categoria_id = _a.categoria_id, status = _a.status, id = _a.id;
+        var nome = _a.nome, lactose = _a.lactose, vegano = _a.vegano, gluten = _a.gluten, categoria_id = _a.categoria_id, status = _a.status, id = _a.id;
         return __awaiter(this, void 0, void 0, function () {
             var pratoRepositorio, prato;
             return __generator(this, function (_b) {
@@ -152,10 +156,22 @@ var HandleDbPratos = /** @class */ (function () {
                         if (!nome) {
                             nome = prato.nome;
                         }
+                        if (!lactose) {
+                            lactose = prato.lactose;
+                        }
+                        if (!vegano) {
+                            vegano = prato.vegano;
+                        }
+                        if (!gluten) {
+                            gluten = prato.gluten;
+                        }
                         if (typeof (status) == "undefined") {
                             status = prato.status;
                         }
                         prato.nome = nome;
+                        prato.lactose = lactose;
+                        prato.vegano = vegano;
+                        prato.gluten = gluten;
                         prato.categoria_id = categoria_id;
                         prato.status = status;
                         return [4 /*yield*/, pratoRepositorio.save(prato)];

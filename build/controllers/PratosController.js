@@ -44,13 +44,13 @@ var HandlePratos = /** @class */ (function () {
     }
     HandlePratos.prototype.inserePrato = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, nome, categoria_id, status, inserePrato;
+            var _a, nome, lactose, vegano, gluten, categoria_id, status, inserePrato;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = request.body, nome = _a.nome, categoria_id = _a.categoria_id;
+                        _a = request.body, nome = _a.nome, lactose = _a.lactose, vegano = _a.vegano, gluten = _a.gluten, categoria_id = _a.categoria_id;
                         status = true;
-                        return [4 /*yield*/, pratos.inserePrato({ nome: nome, categoria_id: categoria_id }, status)];
+                        return [4 /*yield*/, pratos.inserePrato({ nome: nome, lactose: lactose, vegano: vegano, gluten: gluten, categoria_id: categoria_id }, status)];
                     case 1:
                         inserePrato = _b.sent();
                         return [2 /*return*/, response.json(inserePrato)];
@@ -64,7 +64,6 @@ var HandlePratos = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log(request.params);
                         nome = request.params.nome;
                         return [4 /*yield*/, pratos.listaPrato({ nome: nome })];
                     case 1:
@@ -91,12 +90,12 @@ var HandlePratos = /** @class */ (function () {
     };
     HandlePratos.prototype.atualizaPrato = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, nome, categoria_id, status, id, atualizaPrato;
+            var _a, nome, lactose, vegano, gluten, categoria_id, status, id, atualizaPrato;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = request.body, nome = _a.nome, categoria_id = _a.categoria_id, status = _a.status, id = _a.id;
-                        return [4 /*yield*/, pratos.atualizaPrato({ nome: nome, categoria_id: categoria_id, status: status, id: id })];
+                        _a = request.body, nome = _a.nome, lactose = _a.lactose, vegano = _a.vegano, gluten = _a.gluten, categoria_id = _a.categoria_id, status = _a.status, id = _a.id;
+                        return [4 /*yield*/, pratos.atualizaPrato({ nome: nome, lactose: lactose, vegano: vegano, gluten: gluten, categoria_id: categoria_id, status: status, id: id })];
                     case 1:
                         atualizaPrato = _b.sent();
                         return [2 /*return*/, response.json(atualizaPrato)];

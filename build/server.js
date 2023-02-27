@@ -24,6 +24,5 @@ app.use(function (err, request, response, next) {
         message: "Internal Server Error"
     });
 });
-// console.log(process.env.USERNAME);
-app.listen(process.env.PORT || 3000, function () { return console.log("Servidor Rodando"); });
+app.listen(process.env.PORT || 3000);
 //# sourceMappingURL=server.js.map
