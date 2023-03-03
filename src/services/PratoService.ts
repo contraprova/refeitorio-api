@@ -53,7 +53,7 @@ class HandleDbPratos {
         }
         return prato;
     }
-    // Trazer todos os pratos caso não venha parametro na URL, caso venha, pegar os pratos da categoria.
+
     async listaTodosOsPratos({ categoria_id }) {
         const pratoRepositorio = getCustomRepository(PratoRepositories);
         if (!categoria_id) {
