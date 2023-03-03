@@ -15,7 +15,7 @@ const HandleCardapioPratoController = new HandleCardapioPrato();
 
 
 // router.post("/users", createUserController.handle)
-router.get("/", (req, res) => { res.json({ "mensagem": "Rota Base" }) })
+router.get("/", (req, res) => { res.json({ "mensagem": "Rota Base Após o Merge" }) })
 router.post("/prato", HandlePratosController.inserePrato)
 router.get("/listaprato/:nome?", HandlePratosController.listaPrato)
 router.get("/listatodosospratos/:categoria_id?", HandlePratosController.listaTodosOsPratos)
