@@ -1,37 +1,37 @@
-import {Entity,PrimaryGeneratedColumn,PrimaryColumn, Column,ManyToMany,JoinTable, OneToMany, ManyToOne, JoinColumn, OneToOne} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column, ManyToMany, JoinTable, OneToMany, ManyToOne, JoinColumn, OneToOne } from "typeorm";
 import { Cardapio } from "./Cardapio";
 import { Categoria } from "./Categoria";
 
 @Entity("pratos")
 class Prato {
     @PrimaryGeneratedColumn('increment')
-    readonly id:number;
+    readonly id: number;
 
     @Column()
-    nome:string;
+    nome: string;
 
     @Column()
-    lactose:number;
+    lactose: number;
 
     @Column()
-    vegano:number;
+    vegano: number;
 
     @Column()
-    gluten:number;
+    gluten: number;
 
     @Column()
-    categoria_id:number;
+    categoria_id: number;
 
     @Column()
-    status:boolean;
+    status: number;
 
     @ManyToMany(() => Cardapio, cardapio => cardapio.pratos)
     cardapios: Cardapio;
 
-    @JoinColumn({name:'categoria_id'})    
-    @ManyToOne(()=>Categoria, categoria=>categoria.prato)
+    @JoinColumn({ name: 'categoria_id' })
+    @ManyToOne(() => Categoria, categoria => categoria.prato)
     categoria: Categoria[];
 
 }
 
-export {Prato}
+export { Prato }

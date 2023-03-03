@@ -39,13 +39,13 @@ class HandleDbPratos {
         return prato;
     }
 
-    async listaPrato({ nome }) {
-        if (!nome) {
+    async listaPrato({ id }) {
+        if (!id) {
             throw new Error("Informe o Prato");
         }
 
         const pratoRepositorio = getCustomRepository(PratoRepositories);
-        const prato = await pratoRepositorio.findOne({ nome });
+        const prato = await pratoRepositorio.findOne({ id });
 
         if (!prato || typeof (prato) == "undefined") {
             throw new Error("Prato Inexistente");

@@ -13,9 +13,9 @@ class HandlePratos {
 
     async listaPrato(request: Request, response: Response) {
 
-        const { nome } = request.params;
+        const { id } = request.params;
 
-        const listaPrato = await pratos.listaPrato({ nome });
+        const listaPrato = await pratos.listaPrato({ id });
 
         return response.json(listaPrato);
     }
