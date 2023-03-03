@@ -30,7 +30,7 @@ class HandlePratos {
 
     async atualizaPrato(request: Request, response: Response) {
         const { nome, lactose, vegano, gluten, categoria_id, status, id } = request.body;
-        // console.log(request.body);
+
         const atualizaPrato = await pratos.atualizaPrato({ nome, lactose, vegano, gluten, categoria_id, status, id });
 
         return response.json(atualizaPrato);

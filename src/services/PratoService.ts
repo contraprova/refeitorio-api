@@ -70,11 +70,7 @@ class HandleDbPratos {
                 .getMany();
             return prato;
         }
-        // const pratos = await pratoRepositorio.find({categoria_id:categoria_id});            
-        // if(!pratos[0] || pratos.length == 0){
-        //     throw new Error("Prato Inexistente");
-        // }
-        // return prato;
+
     }
 
     async atualizaPrato({ nome, lactose, vegano, gluten, categoria_id, status, id }) {
