@@ -40,6 +40,8 @@ exports.HandleDbPratos = void 0;
 var typeorm_1 = require("typeorm");
 var Prato_1 = require("../entity/Prato");
 var PratosRepositories_1 = require("../repositories/PratosRepositories");
+var Helpers_1 = require("../Helpers");
+var helpers = new Helpers_1.Helpers;
 var HandleDbPratos = /** @class */ (function () {
     function HandleDbPratos() {
     }
@@ -63,7 +65,6 @@ var HandleDbPratos = /** @class */ (function () {
                         if (pratoExistente) {
                             throw new Error("Prato já cadastrado");
                         }
-                        console.log(gluten);
                         prato = pratoRepositorio.create({
                             nome: nome,
                             lactose: lactose,
@@ -102,7 +103,6 @@ var HandleDbPratos = /** @class */ (function () {
             });
         });
     };
-    // Trazer todos os pratos caso não venha parametro na URL, caso venha, pegar os pratos da categoria.
     HandleDbPratos.prototype.listaTodosOsPratos = function (_a) {
         var categoria_id = _a.categoria_id;
         return __awaiter(this, void 0, void 0, function () {
@@ -140,8 +140,8 @@ var HandleDbPratos = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        if (!id && !categoria_id && !status) {
-                            throw new Error("Informe o Prato, Categoria ou Status");
+                        if (!id) {
+                            throw new Error("Informe o Prato");
                         }
                         pratoRepositorio = typeorm_1.getCustomRepository(PratosRepositories_1.PratoRepositories);
                         return [4 /*yield*/, pratoRepositorio.findOne({ id: id })];
@@ -156,24 +156,24 @@ var HandleDbPratos = /** @class */ (function () {
                         if (!nome) {
                             nome = prato.nome;
                         }
-                        if (!lactose) {
+                        if (typeof (lactose) == "undefined") {
                             lactose = prato.lactose;
                         }
-                        if (!vegano) {
+                        if (typeof (vegano) == "undefined") {
                             vegano = prato.vegano;
                         }
-                        if (!gluten) {
+                        if (typeof (gluten) == "undefined") {
                             gluten = prato.gluten;
                         }
                         if (typeof (status) == "undefined") {
                             status = prato.status;
                         }
                         prato.nome = nome;
-                        prato.lactose = lactose;
-                        prato.vegano = vegano;
-                        prato.gluten = gluten;
                         prato.categoria_id = categoria_id;
-                        prato.status = status;
+                        prato.lactose = helpers.handleTrueFalse(lactose);
+                        prato.vegano = helpers.handleTrueFalse(vegano);
+                        prato.gluten = helpers.handleTrueFalse(gluten);
+                        prato.status = helpers.handleTrueFalse(status);
                         return [4 /*yield*/, pratoRepositorio.save(prato)];
                     case 2:
                         _b.sent();

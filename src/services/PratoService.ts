@@ -1,7 +1,7 @@
 import { getCustomRepository, IsNull, Like, SimpleConsoleLogger } from "typeorm";
 import { Prato } from "../entity/Prato";
 import { PratoRepositories } from "../repositories/PratosRepositories";
-import { Helpers } from "../Helpers/index";
+import { Helpers } from "../Helpers";
 
 const helpers = new Helpers;
 
@@ -31,7 +31,6 @@ class HandleDbPratos {
             throw new Error("Prato já cadastrado");
         }
 
-        console.log(gluten)
         const prato = pratoRepositorio.create({
             nome, lactose, vegano, gluten, categoria_id, status
         })
