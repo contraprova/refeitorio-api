@@ -60,12 +60,12 @@ var HandlePratos = /** @class */ (function () {
     };
     HandlePratos.prototype.listaPrato = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var nome, listaPrato;
+            var id, listaPrato;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        nome = request.params.nome;
-                        return [4 /*yield*/, pratos.listaPrato({ nome: nome })];
+                        id = request.params.id;
+                        return [4 /*yield*/, pratos.listaPrato({ id: id })];
                     case 1:
                         listaPrato = _a.sent();
                         return [2 /*return*/, response.json(listaPrato)];

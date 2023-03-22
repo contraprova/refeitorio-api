@@ -42,7 +42,7 @@ var Prato = /** @class */ (function () {
     ], Prato.prototype, "categoria_id", void 0);
     __decorate([
         typeorm_1.Column(),
-        __metadata("design:type", Boolean)
+        __metadata("design:type", Number)
     ], Prato.prototype, "status", void 0);
     __decorate([
         typeorm_1.ManyToMany(function () { return Cardapio_1.Cardapio; }, function (cardapio) { return cardapio.pratos; }),

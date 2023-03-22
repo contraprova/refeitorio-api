@@ -82,17 +82,17 @@ var HandleDbPratos = /** @class */ (function () {
         });
     };
     HandleDbPratos.prototype.listaPrato = function (_a) {
-        var nome = _a.nome;
+        var id = _a.id;
         return __awaiter(this, void 0, void 0, function () {
             var pratoRepositorio, prato;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        if (!nome) {
+                        if (!id) {
                             throw new Error("Informe o Prato");
                         }
                         pratoRepositorio = typeorm_1.getCustomRepository(PratosRepositories_1.PratoRepositories);
-                        return [4 /*yield*/, pratoRepositorio.findOne({ nome: nome })];
+                        return [4 /*yield*/, pratoRepositorio.findOne({ id: id })];
                     case 1:
                         prato = _b.sent();
                         if (!prato || typeof (prato) == "undefined") {
