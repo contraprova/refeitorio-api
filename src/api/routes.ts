@@ -15,7 +15,7 @@ const HandleCardapioPratoController = new HandleCardapioPrato();
 
 
 // router.post("/users", createUserController.handle)
-router.get("/", HandlePratosController.listaTodosOsPratos)
+router.get("/", (req,res)=>{res.json({"msg":"Rota Base"})})
 router.post("/prato", HandlePratosController.inserePrato)
 router.get("/listaprato/:id?", HandlePratosController.listaPrato)
 router.get("/listatodosospratos/:categoria_id?", HandlePratosController.listaTodosOsPratos)
